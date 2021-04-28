@@ -16,10 +16,13 @@ public class CustomerMaskConverter implements Converter {
     customer.setFirstName(input.getFirstName());
     customer.setLastName(input.getLastName());
     customer.setCountry(input.getCountry());
-    customer.setEmail(input.getEmail().replaceFirst(input.getEmail().substring(0, 4), "****"));
+    customer.setCountryCode(input.getCountryCode());
+    customer.setEmail(input.getEmail().replaceAll(PublisherConstants.FIRST_FOUR_CHARACTERS_MASK,
+        PublisherConstants.ASTERISKS));
+    customer.setMobileNumber(input.getMobileNumber());
     customer.setCustomerStatus(input.getCustomerStatus());
-    customer.setBirthDate(input.getBirthDate().replaceFirst(input.getBirthDate().substring(0, 4),
-        "****"));
+    customer.setBirthDate(input.getBirthDate().replaceAll(
+        PublisherConstants.FIRST_FOUR_CHARACTERS_MASK, PublisherConstants.ASTERISKS));
     customer.setCustomerAddress(input.getCustomerAddress());
 
     return customer;

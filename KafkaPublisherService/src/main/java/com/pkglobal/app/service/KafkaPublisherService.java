@@ -1,9 +1,9 @@
 package com.pkglobal.app.service;
 
-import com.pkglobal.app.model.CustomerRequest;
+import com.pkglobal.app.model.CustomerPublisher;
 
 public interface KafkaPublisherService {
 
-  public String publishCustomerDetails(CustomerRequest customerRequest);
+  public String publishCustomerDetails(CustomerPublisher customerRequest);
 
 }

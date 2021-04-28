@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.pkglobal.app.converter.CustomerMaskConverter;
+import com.pkglobal.app.converter.CustomerPublisherConverter;
 import com.pkglobal.app.converter.CustomerResponseConnveter;
+import com.pkglobal.app.model.CustomerPublisher;
 import com.pkglobal.app.model.CustomerRequest;
 import com.pkglobal.app.model.CustomerResponse;
 import com.pkglobal.app.service.KafkaPublisherService;
@@ -35,7 +37,8 @@ public class CustomerPublisherController {
   private KafkaPublisherService customerPublisherService;
   @Autowired
   private CustomerMaskConverter customerMaskConverter;
-
+  @Autowired
+  private CustomerPublisherConverter customerPublisherConverter;
 
 
   /**
@@ -57,7 +60,8 @@ public class CustomerPublisherController {
     String customerJson =
         ObjectMapperUtil.convertJavaObjectToJson(customerMaskConverter.convert(customer));
     LOGGER.info("Customer input request {}", customerJson);
-    String message = customerPublisherService.publishCustomerDetails(customer);
+    CustomerPublisher customerPublisher = customerPublisherConverter.convert(customer);
+    String message = customerPublisherService.publishCustomerDetails(customerPublisher);
     CustomerResponse customerResponse = CustomerResponseConnveter.convertResponse(message);
     LOGGER.info("Customer Response{}", customerResponse);
     return new ResponseEntity<>(customerResponse, HttpStatus.OK);
