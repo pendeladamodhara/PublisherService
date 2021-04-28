@@ -1,4 +1,4 @@
-package com.pkglobel.app.kafkaconfig;
+package com.pkglobal.app.kafkaconfig;
 
 import org.springframework.context.annotation.Configuration;
 

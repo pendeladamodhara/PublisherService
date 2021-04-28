@@ -1,6 +1,6 @@
-package com.pkglobel.app.converter;
+package com.pkglobal.app.converter;
 
-import com.pkglobel.app.model.CustomerRequest;
+import com.pkglobal.app.model.CustomerRequest;
 
 public interface Converter {
   /**

@@ -1,4 +1,4 @@
-package com.pkglobel.app.model;
+package com.pkglobal.app.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;

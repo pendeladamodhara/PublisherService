@@ -1,7 +1,7 @@
-package com.pkglobel.app.converter;
+package com.pkglobal.app.converter;
 
-import com.pkglobel.app.constants.PublisherConstants;
-import com.pkglobel.app.model.CustomerResponse;
+import com.pkglobal.app.constants.PublisherConstants;
+import com.pkglobal.app.model.CustomerResponse;
 
 /**
  * 

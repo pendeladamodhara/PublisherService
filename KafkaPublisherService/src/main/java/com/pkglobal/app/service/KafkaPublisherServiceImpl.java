@@ -1,10 +1,10 @@
-package com.pkglobel.app.service;
+package com.pkglobal.app.service;
 
 import org.springframework.stereotype.Service;
-import com.pkglobel.app.model.CustomerRequest;
+import com.pkglobal.app.model.CustomerRequest;
 
 @Service
-public class KafkaPublisherServiceImpl implements IKafkaPublisherService {
+public class KafkaPublisherServiceImpl implements KafkaPublisherService {
 
   @Override
   public String publishCustomerDetails(CustomerRequest customerRequest) {

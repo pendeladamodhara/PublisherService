@@ -1,4 +1,4 @@
-package com.pkglobel.app.constants;
+package com.pkglobal.app.constants;
 
 public class PublisherConstants {
 

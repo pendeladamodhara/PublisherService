@@ -1,4 +1,4 @@
-package com.pkglobel.app.exceptions;
+package com.pkglobal.app.exceptions;
 
 import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import com.pkglobel.app.constants.PublisherConstants;
-import com.pkglobel.app.model.ErrorResponse;
-import com.pkglobel.app.util.ObjectMapperUtil;
+import com.pkglobal.app.constants.PublisherConstants;
+import com.pkglobal.app.model.ErrorResponse;
+import com.pkglobal.app.util.ObjectMapperUtil;
 
 @ControllerAdvice
 public class CustomerPublisherControllerAdvice {

@@ -1,4 +1,4 @@
-package com.pkglobel.app.model;
+package com.pkglobal.app.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.pkglobel.app.constants.PublisherConstants;
+import com.pkglobal.app.constants.PublisherConstants;
 
 /**
  * CustomerRequest

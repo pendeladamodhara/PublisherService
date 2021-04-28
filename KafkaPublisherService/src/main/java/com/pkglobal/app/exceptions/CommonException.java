@@ -1,4 +1,4 @@
-package com.pkglobel.app.exceptions;
+package com.pkglobal.app.exceptions;
 
 public class CommonException extends Exception {
 

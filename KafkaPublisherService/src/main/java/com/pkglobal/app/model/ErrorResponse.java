@@ -1,4 +1,4 @@
-package com.pkglobel.app.model;
+package com.pkglobal.app.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -9,18 +9,21 @@ import org.springframework.validation.annotation.Validated;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * CustomerResponse
+ * ErrorResponse
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-04-26T14:41:51.027Z")
-public class CustomerResponse {
+public class ErrorResponse {
 	@JsonProperty("status")
 	private String status = null;
 
 	@JsonProperty("message")
 	private String message = null;
 
-	public CustomerResponse status(String status) {
+	@JsonProperty("errorType")
+	private String errorType = null;
+
+	public ErrorResponse status(String status) {
 		this.status = status;
 		return this;
 	}
@@ -39,7 +42,7 @@ public class CustomerResponse {
 		this.status = status;
 	}
 
-	public CustomerResponse message(String message) {
+	public ErrorResponse message(String message) {
 		this.message = message;
 		return this;
 	}
@@ -58,6 +61,25 @@ public class CustomerResponse {
 		this.message = message;
 	}
 
+	public ErrorResponse errorType(String errorType) {
+		this.errorType = errorType;
+		return this;
+	}
+
+	/**
+	 * Get errorType
+	 * 
+	 * @return errorType
+	 **/
+	@ApiModelProperty(value = "")
+	public String getErrorType() {
+		return errorType;
+	}
+
+	public void setErrorType(String errorType) {
+		this.errorType = errorType;
+	}
+
 	@Override
 	public boolean equals(java.lang.Object o) {
 		if (this == o) {
@@ -66,23 +88,26 @@ public class CustomerResponse {
 		if (o == null || getClass() != o.getClass()) {
 			return false;
 		}
-		CustomerResponse customerResponse = (CustomerResponse) o;
-		return Objects.equals(this.status, customerResponse.status)
-				&& Objects.equals(this.message, customerResponse.message);
+		ErrorResponse errorResponse = (ErrorResponse) o;
+		return Objects.equals(this.status, errorResponse.status)
+				&& Objects.equals(this.message, errorResponse.message)
+				&& Objects.equals(this.errorType, errorResponse.errorType);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(status, message);
+		return Objects.hash(status, message, errorType);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("class CustomerResponse {\n");
+		sb.append("class ErrorResponse {\n");
 
 		sb.append("    status: ").append(toIndentedString(status)).append("\n");
 		sb.append("    message: ").append(toIndentedString(message))
+				.append("\n");
+		sb.append("    errorType: ").append(toIndentedString(errorType))
 				.append("\n");
 		sb.append("}");
 		return sb.toString();

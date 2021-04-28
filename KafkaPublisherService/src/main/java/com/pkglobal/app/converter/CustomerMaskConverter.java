@@ -1,8 +1,8 @@
-package com.pkglobel.app.converter;
+package com.pkglobal.app.converter;
 
 import org.springframework.stereotype.Component;
-import com.pkglobel.app.constants.PublisherConstants;
-import com.pkglobel.app.model.CustomerRequest;
+import com.pkglobal.app.constants.PublisherConstants;
+import com.pkglobal.app.model.CustomerRequest;
 
 @Component
 public class CustomerMaskConverter implements Converter {
