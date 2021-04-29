@@ -1,4 +1,4 @@
-package com.pkglobel.app;
+package com.pkglobal.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

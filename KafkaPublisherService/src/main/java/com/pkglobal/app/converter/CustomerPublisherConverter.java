@@ -3,6 +3,7 @@ package com.pkglobal.app.converter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Service;
+import com.pkglobal.app.constants.PublisherConstants;
 import com.pkglobal.app.model.CustomerPublisher;
 import com.pkglobal.app.model.CustomerRequest;
 
@@ -21,7 +22,7 @@ public class CustomerPublisherConverter {
     customer.setMobileNumber(input.getMobileNumber());
     customer.setCustomerStatus(input.getCustomerStatus().toString());
     customer.setBirthDate(LocalDate.parse(input.getBirthDate(),
-        DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        DateTimeFormatter.ofPattern(PublisherConstants.ddMMyyyy)));
     customer.setCustomerAddress(input.getCustomerAddress());
     return customer;
 

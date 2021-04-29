@@ -26,6 +26,7 @@ public class PublisherConstants {
   public static final String ASTERISK = "*";
   public static final String ASTERISKS = "****";
 
+  public static final String ddMMyyyy = "ddMMyyyy";
 
 
 }
