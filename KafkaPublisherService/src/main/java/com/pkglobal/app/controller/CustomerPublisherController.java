@@ -1,6 +1,7 @@
 package com.pkglobal.app.controller;
 
 import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.pkglobal.app.converter.CustomerMaskConverter;
 import com.pkglobal.app.converter.CustomerPublisherConverter;
 import com.pkglobal.app.converter.CustomerResponseConnveter;
@@ -31,39 +33,38 @@ import com.pkglobal.app.util.ObjectMapperUtil;
 @RequestMapping(value = "/v1")
 public class CustomerPublisherController {
 
-  public static final Logger LOGGER = LoggerFactory.getLogger(CustomerPublisherController.class);
+	public static final Logger LOGGER = LoggerFactory.getLogger(CustomerPublisherController.class);
 
-  @Autowired
-  private KafkaPublisherService customerPublisherService;
-  @Autowired
-  private CustomerMaskConverter customerMaskConverter;
-  @Autowired
-  private CustomerPublisherConverter customerPublisherConverter;
+	@Autowired
+	private KafkaPublisherService customerPublisherService;
+	@Autowired
+	private CustomerMaskConverter customerMaskConverter;
+	@Autowired
+	private CustomerPublisherConverter customerPublisherConverter;
+	@Autowired
+	private CustomerResponseConnveter customerResponseConnveter;
 
-
-  /**
-   * API to push customer information to kafka server
-   * 
-   * @param authorization
-   * @param transactionId
-   * @param activityId
-   * @param body
-   * @return
-   */
-  @PostMapping(value = "/publish-customer", produces = {"application/json"},
-      consumes = {"application/json"})
-  public ResponseEntity<CustomerResponse> publishCustomerDetails(@RequestHeader(
-      value = "Authorization", required = true) String authorization, @RequestHeader(
-      value = "Transaction-Id", required = true) String transactionId, @RequestHeader(
-      value = "Activity-Id", required = true) String activityId,
-      @Valid @RequestBody CustomerRequest customer) {
-    String customerJson =
-        ObjectMapperUtil.convertJavaObjectToJson(customerMaskConverter.convert(customer));
-    LOGGER.info("Customer input request {}", customerJson);
-    CustomerPublisher customerPublisher = customerPublisherConverter.convert(customer);
-    String message = customerPublisherService.publishCustomerDetails(customerPublisher);
-    CustomerResponse customerResponse = CustomerResponseConnveter.convertResponse(message);
-    LOGGER.info("Customer Response{}", customerResponse);
-    return new ResponseEntity<>(customerResponse, HttpStatus.OK);
-  }
+	/**
+	 * API to push customer information to kafka server
+	 * 
+	 * @param authorization
+	 * @param transactionId
+	 * @param activityId
+	 * @param body
+	 * @return
+	 */
+	@PostMapping(value = "/publish-customer", produces = { "application/json" }, consumes = { "application/json" })
+	public ResponseEntity<CustomerResponse> publishCustomerDetails(
+			@RequestHeader(value = "Authorization", required = true) String authorization,
+			@RequestHeader(value = "Transaction-Id", required = true) String transactionId,
+			@RequestHeader(value = "Activity-Id", required = true) String activityId,
+			@Valid @RequestBody CustomerRequest customer) {
+		String customerJson = ObjectMapperUtil.convertJavaObjectToJson(customerMaskConverter.convert(customer));
+		LOGGER.info("Customer input request {}", customerJson);
+		CustomerPublisher customerPublisher = customerPublisherConverter.convert(customer);
+		String message = customerPublisherService.publishCustomerDetails(customerPublisher);
+		CustomerResponse customerResponse = customerResponseConnveter.convertResponse(message);
+		LOGGER.info("Customer Response{}", customerResponse);
+		return new ResponseEntity<>(customerResponse, HttpStatus.OK);
+	}
 }
