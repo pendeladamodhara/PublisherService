@@ -1,12 +1,16 @@
 package com.pkglobal.app.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 
+import org.apache.kafka.common.KafkaException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,15 +27,23 @@ import com.pkglobal.app.model.CustomerRequest.CustomerStatusEnum;
 public class KafkaPublisherServiceImplTest {
 
 	@Autowired
-	KafkaPublisherService kafkaPublisherService;
+	KafkaPublisherServiceImpl kafkaPublisherService;
 	@MockBean
-	KafkaTemplate<String, Object> kafkaTemplate;
+	private KafkaTemplate<String, Object> kafkaTemplate;
 
 	@Test
-	public void test() {
+	public void testPublishCustomerDetailsWhenValidCustomerObjectPassedShouldReturnSuccess() {
 		when(kafkaTemplate.send("customer", getCustomerPublisher())).thenReturn(null);
 		String message = kafkaPublisherService.publishCustomerDetails(getCustomerPublisher());
 		assertEquals(PublisherConstants.SUCCESS_MESSAGE, message);
+	}
+
+	@Test
+	public void testPublishCustomerDetailsWhenKafkaServerNotAvailableShouldThrowException() {
+		doThrow(KafkaException.class).when(kafkaTemplate).send(Mockito.anyString(), Mockito.any());
+		Assertions.assertThrows(KafkaException.class, () -> {
+			kafkaPublisherService.publishCustomerDetails(getCustomerPublisher());
+		});
 	}
 
 	private CustomerPublisher getCustomerPublisher() {
