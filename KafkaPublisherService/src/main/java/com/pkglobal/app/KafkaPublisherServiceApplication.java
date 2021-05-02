@@ -6,8 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KafkaPublisherServiceApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(KafkaPublisherServiceApplication.class, args);
-  }
+	public static void main(String[] args) {
+
+		SpringApplication.run(KafkaPublisherServiceApplication.class, args);
+
+	}
 
 }
