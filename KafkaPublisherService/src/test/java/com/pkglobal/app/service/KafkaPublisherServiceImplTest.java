@@ -56,7 +56,7 @@ public class KafkaPublisherServiceImplTest {
 		customer.setCountryCode("IN");
 		customer.setMobileNumber("9492643115");
 		customer.setCustomerStatus(CustomerStatusEnum.OPEN.toString());
-		customer.setBirthDate(LocalDate.now());
+		customer.setBirthDate(LocalDate.now().toString());
 		customer.setCustomerAddress(getCustomerAddress());
 		return customer;
 

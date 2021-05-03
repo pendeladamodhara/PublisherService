@@ -24,7 +24,7 @@ public class CustomerPublisherTest {
 		assertEquals("IN", customer.getCountryCode());
 		assertEquals("9492643115", customer.getMobileNumber());
 		assertEquals("Open", customer.getCustomerStatus().toString());
-		assertEquals(LocalDate.now(), customer.getBirthDate());
+		assertEquals(LocalDate.now().toString(), customer.getBirthDate());
 		assertNotNull(customer.getCustomerAddress());
 
 	}
@@ -39,7 +39,7 @@ public class CustomerPublisherTest {
 		customer.setCountryCode("IN");
 		customer.setMobileNumber("9492643115");
 		customer.setCustomerStatus(CustomerStatusEnum.OPEN.toString());
-		customer.setBirthDate(LocalDate.now());
+		customer.setBirthDate(LocalDate.now().toString());
 		customer.setCustomerAddress(getCustomerAddress());
 		return customer;
 
